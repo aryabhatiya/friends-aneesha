@@ -22,8 +22,11 @@ pwd
       (insert s)
       (when (file-writable-p filename) 
          (write-region (point-min) (point-max) filename nil))))
-  (my-append-string-to-file (concat "# " filename) "README.md" )
+  (my-append-string-to-file (concat "# " filename "\n" ) "README.md" )
 #+END_SRC
+
+#+RESULTS:
+
 *** Prepare Test 
 #+BEGIN_SRC elisp
   (defun file-string (file)
