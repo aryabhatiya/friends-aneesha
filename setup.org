@@ -1,0 +1,141 @@
+* Prepare Moudle Name = directory name
+#+NAME: module
+#+BEGIN_SRC sh  :results value  :post dirlast(link=*this*)
+pwd 
+#+END_SRC
+
+#+RESULTS: module
+| friends-aneesha |
+
+#+NAME: dirlast
+#+BEGIN_SRC elisp :var link="" :results vaule
+  (last 
+   (split-string 
+     (replace-regexp-in-string "/" " " link)))
+#+END_SRC
+
+* Setup GIT 
+** Prepare [[README.md]]
+#+BEGIN_SRC elisp :var filename=module[0] 
+  (defun my-append-string-to-file (s filename)
+    (with-temp-buffer
+      (insert s)
+      (when (file-writable-p filename) 
+         (write-region (point-min) (point-max) filename nil))))
+  (my-append-string-to-file (concat "# " filename) "README.md" )
+#+END_SRC
+*** Prepare Test 
+#+BEGIN_SRC elisp
+  (defun file-string (file)
+    "Read the contents of a file and return as a string."
+    (with-temp-buffer
+      (insert-file-contents file)
+      (buffer-string)))
+  (file-string "README.md")
+#+END_SRC
+#+RESULTS:
+: # friends-aneesha
+
+** Git Init Script [[gitinit.sh]]
+*** Prepare git URL
+#+BEGIN_SRC elisp :var  name="chowdhuryashraf" :var lib=module[0]
+  (concat "https://github.com/" name  "/" lib ".git")
+#+END_SRC
+
+#+RESULTS:
+: https://github.com/chowdhuryashraf/friends-aneesha.git
+*** First Commint
+#+BEGIN_SRC elisp
+(magit-init "/usr/local/src/microlibrary/friends-aneesha/")
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC elisp
+(magit-status)
+#+END_SRC
+
+#+RESULTS:
+
+*** Git Push
+#+BEGIN_SRC 
+git remote add origin 
+git push -u origin master
+#+END_SRC
+
+*** Set permission
+#+BEGIN_SRC sh
+ls -l gitinit.sh
+chmod +x gitinit.sh
+ls -l gitinit.sh
+#+END_SRC
+
+#+RESULTS:
+| -rw-r--r-- | 1 | root | staff | 195 | Dec | 28 | 16:54 | gitinit.sh |
+| -rwxr-xr-x | 1 | root | staff | 195 | Dec | 28 | 16:54 | gitinit.sh |
+
+#+BEGIN_SRC sh :tangle gitinit.sh
+echo "# starwars-names" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/chowdhuryashraf/starwars-names.git
+git push -u origin master
+#+END_SRC
+
+* Npm module INIT
+#+BEGIN_SRC sh 
+npm set init-author-email 'chowdhury.k.ashraf@gmail.com'
+npm set init-author-url 'http://23.227.183.105'
+npm set init-license=MIT
+npm set save-exact true
+#+END_SRC
+
+#+RESULTS:
+
+** [[~/.npmrc]] for npm setting
+** Add npm user 
+#+BEGIN_SRC sh
+npm adduser
+#+END_SRC
+
+** npm init 
+#+BEGIN_SRC sh
+npm init
+#+END_SRC
+
+#+BEGIN_SRC sh
+npm publish
+#+END_SRC
+
+#+RESULTS:
+
+* init module  
+** [[index.js]]
+** data init 
+#+BEGIN_SRC js :tangle src/starwars-names.json 
+[
+  "Aneesha",
+  "Ghumpori",
+  "Maliha",
+  "Shamaila",
+  "Liana",
+  "Asia",
+  "Arjab",
+  "Esha",
+  "Rumaita",
+  "Faiz",
+  "Aiyan"
+]
+#+END_SRC
+** import library
+#+BEGIN_SRC js :cmd "babel-node" :tangle repl/starwars-names.js :results output drawer :dir /usr/local/src/microlibrary/starwars-names
+let lib = require(process.cwd() + '/src/index.js');
+console.log('|random friend | ' + lib.random());
+console.log('|list of friends| ' + lib.all);
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+| random friend | Faiz |
+
