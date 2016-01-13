@@ -1,28 +1,154 @@
 * Prepare Moudle Name = directory name
 #+NAME: module
-#+BEGIN_SRC sh  :results value  :post dirlast(link=*this*)
-pwd 
+#+BEGIN_SRC elisp  :results value  
+  (last 
+   (split-string 
+    (replace-regexp-in-string "/" " "   (expand-file-name "")) ))
 #+END_SRC
 
 #+RESULTS: module
 | friends-aneesha |
-
-#+NAME: dirlast
-#+BEGIN_SRC elisp :var link="" :results vaule
-  (last 
-   (split-string 
-     (replace-regexp-in-string "/" " " link)))
+* Npm module INIT
+  CLOCK: [2016-01-13 Wed 04:48]--[2016-01-13 Wed 04:55] =>  0:07
+  :PROPERTIES:
+  :Effort:   0:08
+  :END:
+#+BEGIN_SRC sh :var EMAIL="chowdhury.k.ashraf@gmail.com" URL="http://23.227.183.105"
+  npm set init-author-email $EMAIL
+  npm set init-author-url $URL
+  npm set init-license=MIT
+  npm set save-exact true
+  echo $EMAIL $URL
 #+END_SRC
+
+#+RESULTS:
+: chowdhury.k.ashraf@gmail.com http://23.227.183.105
+
+** [[~/.npmrc][npm rc]] for npm setting
+** Add npm user 
+   CLOCK: [2016-01-13 Wed 08:12]--[2016-01-13 Wed 08:35] =>  0:23
+   CLOCK: [2016-01-13 Wed 07:52]--[2016-01-13 Wed 08:12] =>  0:20
+   CLOCK: [2016-01-13 Wed 06:10]--[2016-01-13 Wed 06:11] =>  0:01
+   :PROPERTIES:
+   :Effort:   0:23
+   :END:
+
+#+CALL: cmdaync(cmd="npm adduser") 
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
+
+*** Send data to PIPE
+   CLOCK: [2016-01-13 Wed 05:47]--[2016-01-13 Wed 05:58] =>  0:11
+   :PROPERTIES:
+   :Effort:   0:10
+   :END:
+#+NAME: cmdaync
+#+BEGIN_SRC sh :var cmd="" :var mod=module[0] :noweb yes
+<<check_pipeserver_running>>
+echo  $cmd   > $pipe
+#+END_SRC
+
+#+RESULTS:
+: command npm adduser is sended to /tmp/friends-aneesha
+
+**** check_pipeserver_running
+#+NAME: check_pipeserver_running
+#+BEGIN_SRC sh 
+pipe="/tmp/"$mod
+[ ! -p $pipe ] && exit 1 || echo "command $DT is sended to $pipe"
+#+END_SRC
+
+#+RESULTS: check_pipeserver_running
+: command  is sended to /tmp/friends-aneesha
+
+**** test Inline if 
+#+BEGIN_SRC sh
+if [ $counter -eq 1 ] then; echo "true";
+#+END_SRC
+
+** npm init 
+*** Check NPM Version
+#+BEGIN_SRC sh :results verbatim drawer
+npm version
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+{ npm: '3.5.0',
+  ares: '1.10.1-DEV',
+  http_parser: '2.5.0',
+  modules: '46',
+  node: '4.2.1',
+  openssl: '1.0.2d',
+  uv: '1.7.5',
+  v8: '4.5.103.35',
+  zlib: '1.2.8' }
+:END:
+*** init cmd
+#+CALL: cmdaync(cmd="npm init")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
+*** [[./package.json][package]]
+* init module  
+** Module firend_anneesha 
+*** Install unique-random-array
+#+BEGIN_SRC sh :resutls verbatim drawer
+npm install unique-random-array
+#+END_SRC
+
+#+RESULTS:
+*** Write module [[./src/index.js][module src]]
+#+BEGIN_SRC js :tangle src/index.js :mkdirp yes
+var uniqueRandomArray = require('unique-random-array');
+var starWarsNames = require('./friends-names.json');
+
+module.exports = {
+  all: starWarsNames,
+  random: uniqueRandomArray(starWarsNames)
+};
+#+END_SRC
+** data init 
+#+BEGIN_SRC js :tangle src/friends-names.json 
+[
+  "Aneesha",
+  "Ghumpori",
+  "Maliha",
+  "Shamaila",
+  "Liana",
+  "Asia",
+  "Arjab",
+  "Esha",
+  "Rumaita",
+  "Faiz",
+  "Aiyan"
+]
+#+END_SRC
+
+** import library
+#+BEGIN_SRC js :cmd "babel-node" :tangle repl/friends-names.js :results output drawer :mkdirp yes
+  let lib = require(process.cwd() + '/src/index.js');
+  console.log('|random friend | ' + lib.random());
+  console.log('|list of friends| ' + lib.all);
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+| random friend   | Arjab                                                                     |
+| list of friends | Aneesha,Ghumpori,Maliha,Shamaila,Liana,Asia,Arjab,Esha,Rumaita,Faiz,Aiyan |
+:END:
+
 
 * Setup GIT 
 ** Prepare [[README.md]]
 #+BEGIN_SRC elisp :var filename=module[0] 
-  (defun my-append-string-to-file (s filename)
+  (defun ash-append-string-to-file (s filename)
     (with-temp-buffer
       (insert s)
       (when (file-writable-p filename) 
          (write-region (point-min) (point-max) filename nil))))
-  (my-append-string-to-file (concat "# " filename "\n" ) "README.md" )
+  (ash-append-string-to-file (concat "# " filename "\n" ) "README.md" )
 #+END_SRC
 
 #+RESULTS:
@@ -39,106 +165,17 @@ pwd
 #+RESULTS:
 : # friends-aneesha
 
-** Git Init Script [[gitinit.sh]]
-*** Prepare git URL
-#+BEGIN_SRC elisp :var  name="chowdhuryashraf" :var lib=module[0]
-  (concat "https://github.com/" name  "/" lib ".git")
-#+END_SRC
-
-#+RESULTS:
-: https://github.com/chowdhuryashraf/friends-aneesha.git
-*** First Commint
-#+BEGIN_SRC elisp
-(magit-init "/usr/local/src/microlibrary/friends-aneesha/")
-#+END_SRC
-
-#+RESULTS:
-
-#+BEGIN_SRC elisp
-(magit-status)
-#+END_SRC
-
-#+RESULTS:
-
-*** Git Push
-#+BEGIN_SRC 
-git remote add origin 
-git push -u origin master
-#+END_SRC
-
-*** Set permission
-#+BEGIN_SRC sh
-ls -l gitinit.sh
-chmod +x gitinit.sh
-ls -l gitinit.sh
-#+END_SRC
-
-#+RESULTS:
-| -rw-r--r-- | 1 | root | staff | 195 | Dec | 28 | 16:54 | gitinit.sh |
-| -rwxr-xr-x | 1 | root | staff | 195 | Dec | 28 | 16:54 | gitinit.sh |
-
-#+BEGIN_SRC sh :tangle gitinit.sh
-echo "# starwars-names" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/chowdhuryashraf/starwars-names.git
-git push -u origin master
-#+END_SRC
-
-* Npm module INIT
+** Git Init 
 #+BEGIN_SRC sh 
-npm set init-author-email 'chowdhury.k.ashraf@gmail.com'
-npm set init-author-url 'http://23.227.183.105'
-npm set init-license=MIT
-npm set save-exact true
+git init 
+git remote add origin https://github.com/chowdhuryashraf/friends-aneesha.git
+git remote -v
 #+END_SRC
 
 #+RESULTS:
+| Reinitialized | existing                                               | Git     | repository | in | /usr/local/src/microlibrary/friends-aneesha/.git/ |
+| origin        | [[https://github.com/chowdhuryashraf/friends-aneesha.git]] | (fetch) |            |    |                                                   |
+| origin        | [[https://github.com/chowdhuryashraf/friends-aneesha.git]] | (push)  |            |    |                                                   |
 
-** [[~/.npmrc]] for npm setting
-** Add npm user 
-#+BEGIN_SRC sh
-npm adduser
-#+END_SRC
 
-** npm init 
-#+BEGIN_SRC sh
-npm init
-#+END_SRC
-
-#+BEGIN_SRC sh
-npm publish
-#+END_SRC
-
-#+RESULTS:
-
-* init module  
-** [[index.js]]
-** data init 
-#+BEGIN_SRC js :tangle src/starwars-names.json 
-[
-  "Aneesha",
-  "Ghumpori",
-  "Maliha",
-  "Shamaila",
-  "Liana",
-  "Asia",
-  "Arjab",
-  "Esha",
-  "Rumaita",
-  "Faiz",
-  "Aiyan"
-]
-#+END_SRC
-** import library
-#+BEGIN_SRC js :cmd "babel-node" :tangle repl/starwars-names.js :results output drawer :dir /usr/local/src/microlibrary/starwars-names
-let lib = require(process.cwd() + '/src/index.js');
-console.log('|random friend | ' + lib.random());
-console.log('|list of friends| ' + lib.all);
-#+END_SRC
-
-#+RESULTS:
-:RESULTS:
-| random friend | Faiz |
 

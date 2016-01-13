@@ -1,0 +1,23 @@
+{
+  "name": "friends-aneesha",
+  "version": "1.0.0",
+  "description": "New Module bootstrap",
+  "main": "src/index.js",
+  "dependencies": {
+    "unique-random-array": "1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chowdhuryashraf/friends-aneesha.git"
+  },
+  "keywords": [
+    "bootstart",
+    "module"
+  ],
+  "author": "Chowdhury Ashraf",
+  "license": "MIT"
+}
