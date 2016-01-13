@@ -181,6 +181,7 @@ git remote -v
 
 * Npm publish
 ** Publish to npm
+   CLOCK: [2016-01-13 Wed 15:04]--[2016-01-13 Wed 15:05] =>  0:01
 #+BEGIN_SRC sh
 npm publish
 #+END_SRC
@@ -227,7 +228,7 @@ npm info friends-aneesha
 #+end_example
 
 ** Deploy other place 
-   CLOCK: [2016-01-13 Wed 14:39]
+   CLOCK: [2016-01-13 Wed 14:39]--[2016-01-13 Wed 15:04] =>  0:25
    :PROPERTIES:
    :Effort:   0:05
    :dir: /usr/local/src/microlibrary/testmicro
@@ -280,4 +281,11 @@ Maliha
 :END:
 
 
+
+* Git TAG
+#+BEGIN_SRC sh
+git tag 1.0.0
+#+END_SRC
+
+#+RESULTS:
 
