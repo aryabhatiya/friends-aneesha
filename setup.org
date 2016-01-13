@@ -179,3 +179,105 @@ git remote -v
 
 
 
+* Npm publish
+** Publish to npm
+#+BEGIN_SRC sh
+npm publish
+#+END_SRC
+
+#+RESULTS:
+: + friends-aneesha@1.0.0
+** Check details
+#+BEGIN_SRC sh :results output
+npm info friends-aneesha
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+ 
+{ name: 'friends-aneesha',
+  description: 'New Module bootstrap',
+  'dist-tags': { latest: '1.0.0' },
+  versions: [ '1.0.0' ],
+  maintainers: [ 'chowdhuryashraf <chowdhury.k.ashraf@gmail.com>' ],
+  time: 
+   { modified: '2016-01-13T19:24:52.189Z',
+     created: '2016-01-13T19:24:52.189Z',
+     '1.0.0': '2016-01-13T19:24:52.189Z' },
+  homepage: 'https://github.com/chowdhuryashraf/friends-aneesha#readme',
+  keywords: [ 'bootstart', 'module' ],
+  repository: 
+   { type: 'git',
+     url: 'git+https://github.com/chowdhuryashraf/friends-aneesha.git' },
+  author: 'Chowdhury Ashraf',
+  bugs: { url: 'https://github.com/chowdhuryashraf/friends-aneesha/issues' },
+  license: 'MIT',
+  readmeFilename: 'README.md',
+  version: '1.0.0',
+  main: 'src/index.js',
+  dependencies: { 'unique-random-array': '1.0.0' },
+  devDependencies: {},
+  scripts: { test: 'echo "Error: no test specified" && exit 1' },
+  gitHead: '40e950b9d7a1cf1905ef0b028d46f940c35fcbfb',
+  dist: 
+   { shasum: 'afeae752a81af64401436d7d250996d3ce3e9a96',
+     tarball: 'http://registry.npmjs.org/friends-aneesha/-/friends-aneesha-1.0.0.tgz' },
+  directories: {} }
+
+#+end_example
+
+** Deploy other place 
+   CLOCK: [2016-01-13 Wed 14:39]
+   :PROPERTIES:
+   :Effort:   0:05
+   :dir: /usr/local/src/microlibrary/testmicro
+   :END:
+
+#+BEGIN_SRC sh 
+npm install friends-aneesha
+#+END_SRC
+
+#+RESULTS:
+| /usr/local/src/microlibrary/testmicro |                           |
+| └─┬                                   | friends-aneesha@1.0.0     |
+| └─┬                                   | unique-random-array@1.0.0 |
+| └──                                   | unique-random@1.0.0       |
+|                                       |                           |
+#+NAME: mpath
+#+BEGIN_SRC elisp
+(expand-file-name "node_modules/")
+#+END_SRC
+
+#+RESULTS:
+: /usr/local/src/microlibrary/testmicro/node_modules/
+
+#+BEGIN_SRC js :cmd "babel-node" :var path=mpath[0]   :results output drawer 
+let friendsAneesha = require(path + 'friends-aneesha')
+console.log(friendsAneesha.all);
+console.log(friendsAneesha.random());
+console.log(friendsAneesha.random());
+console.log(friendsAneesha.random());
+console.log(friendsAneesha.random());
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[ 'Aneesha',
+  'Ghumpori',
+  'Maliha',
+  'Shamaila',
+  'Liana',
+  'Asia',
+  'Arjab',
+  'Esha',
+  'Rumaita',
+  'Faiz',
+  'Aiyan' ]
+Liana
+Shamaila
+Aneesha
+Maliha
+:END:
+
+
+
