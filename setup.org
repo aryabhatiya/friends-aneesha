@@ -278,9 +278,43 @@ Maliha
 :END:
 
 * Git TAG
-#+BEGIN_SRC sh
-git tag 1.0.0
+#+NAME: gittag
+#+BEGIN_SRC sh :var tag=""
+git tag $tag
 #+END_SRC
 
 #+RESULTS:
 * Publishing a beta version
+** Adding 2 names in aneesha's [[/usr/local/src/microlibrary/friends-aneesha/src/friends-names.json][friend list]]
+#+BEGIN_EXAMPLE
+@@ -1,4 +1,3 @@
+-
+ [
+   "Aneesha",
+   "Ghumpori",
+@@ -10,5 +9,7 @@
+   "Esha",
+   "Rumaita",
+   "Faiz",
+-  "Aiyan"
++  "Aiyan",
++  "Baby Baby2",
++  "Bandhan"
+ ]
+
+#+END_EXAMPLE
+** Update Git Tag
+#+CALL: gittag("1.4.0-beta.0")
+
+#+RESULTS:
+: nil
+
+** package.json
+#+BEGIN_EXAMPLE
+modified   package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "friends-aneesha",
+-  "version": "1.0.0",
++  "version": "1.4.0-beta.0",
+#+END_EXAMPLE

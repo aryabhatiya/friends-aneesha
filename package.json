@@ -1,6 +1,6 @@
 {
   "name": "friends-aneesha",
-  "version": "1.0.0",
+  "version": "1.4.0-beta.0",
   "description": "New Module bootstrap",
   "main": "src/index.js",
   "dependencies": {
