@@ -21,5 +21,13 @@ describe('firends-anneesha', function() {
       var randomItem = friends.random();
       expect(friends.all).to.include(randomItem);
     });
+
+    it('should return an array of random items if passed a number', function() {
+      var randomItems = friends.random(3);
+      expect(randomItems).to.have.length(3);
+      randomItems.map(function(item) {
+        expect(friends.all).to.include(item);
+      });
+    });
   });
 });

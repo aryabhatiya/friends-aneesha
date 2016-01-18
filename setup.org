@@ -518,8 +518,87 @@ describe('firends-anneesha', function() {
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
 
+** install commitizen and cz-conventional-changelog
+#+call: cmdaync("npm install -D commitizen  cz-conventional-changelog")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
+#+BEGIN_SRC sh
+npm list commitizen  cz-conventional-changelog
+#+END_SRC
+
+#+RESULTS:
+| friends-aneesha@1.4.0-beta.0 | /usr/local/src/microlibrary/friends-aneesha |                                 |
+| ├─┬                          | commitizen@2.5.0                            |                                 |
+| │                            | └──                                         | cz-conventional-changelog@1.1.4 |
+| └──                          | cz-conventional-changelog@1.1.5             |                                 |
+|                              |                                             |                                 |
+
 ** Update [[file:.travis.yml][Travis CI ]]
 ** commit git with npm
+#+call: cmdaync("npm run commit")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
+* Add new feature *returns array of random number*
+#+BEGIN_EXAMPLE
+*** /tmp/ediff25330DRd	2016-01-18 16:26:52.536000000 -0500
+--- /tmp/ediff25330Qbj	2016-01-18 16:26:52.540000000 -0500
+***************
+*** 1,8 ****
+-
+  var uniqueRandomArray = require('unique-random-array');
+! var starWarsNames = require('./friends-names.json');
+
+  module.exports = {
+!   all: starWarsNames,
+!   random: uniqueRandomArray(starWarsNames)
+  };
+--- 1,20 ----
+  var uniqueRandomArray = require('unique-random-array');
+! var nameOfFriendsOfAneesha = require('./friends-names.json');
+! var getRandomItem = uniqueRandomArray(nameOfFriendsOfAneesha);
+! var randomItems = [];
+
+  module.exports = {
+!   all: nameOfFriendsOfAneesha,
+!   random: random
+  };
++
++ function random(number){
++   if (number === undefined){
++     return getRandomItem();
++   }
++   if ( number > 0 ){
++     randomItems.push(getRandomItem());
++     return random( number - 1);
++   }
++   return randomItems;
++ }
+
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+*** /tmp/ediff25330QpL	2016-01-18 16:37:28.704000000 -0500
+--- /tmp/ediff25330dzR	2016-01-18 16:37:28.704000000 -0500
+***************
+*** 21,25 ****
+--- 21,33 ----
+        var randomItem = friends.random();
+        expect(friends.all).to.include(randomItem);
+      });
++
++     it('should return an array of random items if passed a number', function() {
++       var randomItems = friends.random(3);
++       expect(randomItems).to.have.length(3);
++       randomItems.map(function(item) {
++         expect(friends.all).to.include(item);
++       });
++     });
+    });
+  });
+
+#+END_EXAMPLE
+* run num git
 #+call: cmdaync("npm run commit")
 
 #+RESULTS:
