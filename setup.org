@@ -598,7 +598,7 @@ npm list commitizen  cz-conventional-changelog
   });
 
 #+END_EXAMPLE
-* run num git
+** run npm git
 #+call: cmdaync("npm run commit")
 
 #+RESULTS:
@@ -608,6 +608,48 @@ npm list commitizen  cz-conventional-changelog
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
 
+#+call: cmdaync("npm run commit")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
+** and test:single
+#+BEGIN_EXAMPLE
+*** /tmp/ediff253305Js	2016-01-18 17:13:14.748000000 -0500
+--- /tmp/ediff25330GUy	2016-01-18 17:13:14.752000000 -0500
+***************
+*** 12,17 ****
+  before_script:
+    - npm prune
+  script:
+!   - npm run test
+  after_success:
+    - npm run semantic-release
+--- 12,17 ----
+  before_script:
+    - npm prune
+  script:
+!   - npm run test:single
+  after_success:
+    - npm run semantic-release
+
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+*** /tmp/ediff25330gvy	2016-01-18 17:15:10.644000000 -0500
+--- /tmp/ediff25330S5B	2016-01-18 17:15:10.644000000 -0500
+***************
+*** 19,24 ****
+--- 19,25 ----
+    "scripts": {
+      "commit": "git-cz",
+      "test": "mocha src/index.test.js -w",
++     "test:single": "mocha src/index.test.js",
+      "semantic-release": "semantic-release pre && npm publish &&semantic-release post"
+    },
+    "repository": {
+
+#+END_EXAMPLE
+** run npm git
 #+call: cmdaync("npm run commit")
 
 #+RESULTS:
