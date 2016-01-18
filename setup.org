@@ -417,3 +417,96 @@ Maliha
 Arjab
 Esha
 :END:
+* Test
+* Test friends-aneesha@1.4.0-beta.0
+** Adding test libraries mocha chai
+#+BEGIN_SRC sh
+npm install --save-dev mocha
+#+END_SRC
+
+#+BEGIN_SRC sh
+npm install --save-dev chai
+#+END_SRC
+
+#+RESULTS:
+| friends-aneesha@1.4.0-beta.0 | /usr/local/src/microlibrary/friends-aneesha |                       |                   |
+| ├─┬                          | chai@3.4.1                                  |                       |                   |
+| │                            | ├──                                         | assertion-error@1.0.1 |                   |
+| │                            | ├─┬                                         | deep-eql@0.1.3        |                   |
+| │                            | │                                           | └──                   | type-detect@0.1.1 |
+| │                            | └──                                         | type-detect@1.0.0     |                   |
+| └──                          | unique-random-array@1.0.0                   |                       |                   |
+|                              |                                             |                       |                   |
+
+#+BEGIN_SRC sh
+npm list mocha chi
+#+END_SRC
+
+#+RESULTS:
+| friends-aneesha@1.4.0-beta.0 | /usr/local/src/microlibrary/friends-aneesha |
+| ├──                          | chi@0.0.10                                  |
+| └──                          | mocha@2.3.4                                 |
+|                              |                                             |
+
+#+BEGIN_SRC sh
+npm list
+#+END_SRC
+
+#+RESULTS:
+| friends-aneesha@1.4.0-beta.0 | /usr/local/src/microlibrary/friends-aneesha |                            |                   |
+| ├─┬                          | chai@3.4.1                                  |                            |                   |
+| │                            | ├──                                         | assertion-error@1.0.1      |                   |
+| │                            | ├─┬                                         | deep-eql@0.1.3             |                   |
+| │                            | │                                           | └──                        | type-detect@0.1.1 |
+| │                            | └──                                         | type-detect@1.0.0          |                   |
+| ├─┬                          | mocha@2.3.4                                 |                            |                   |
+| │                            | ├──                                         | commander@2.3.0            |                   |
+| │                            | ├─┬                                         | debug@2.2.0                |                   |
+| │                            | │                                           | └──                        | ms@0.7.1          |
+| │                            | ├──                                         | diff@1.4.0                 |                   |
+| │                            | ├──                                         | escape-string-regexp@1.0.2 |                   |
+| │                            | ├─┬                                         | glob@3.2.3                 |                   |
+| │                            | │                                           | ├──                        | graceful-fs@2.0.3 |
+| │                            | │                                           | ├──                        | inherits@2.0.1    |
+| │                            | │                                           | └─┬                        | minimatch@0.2.14  |
+| │                            | │                                           | ├──                        | lru-cache@2.7.3   |
+| │                            | │                                           | └──                        | sigmund@1.0.1     |
+| │                            | ├──                                         | growl@1.8.1                |                   |
+| │                            | ├─┬                                         | jade@0.26.3                |                   |
+| │                            | │                                           | ├──                        | commander@0.6.1   |
+| │                            | │                                           | └──                        | mkdirp@0.3.0      |
+| │                            | ├─┬                                         | mkdirp@0.5.0               |                   |
+| │                            | │                                           | └──                        | minimist@0.0.8    |
+| │                            | └──                                         | supports-color@1.2.0       |                   |
+| └─┬                          | unique-random-array@1.0.0                   |                            |                   |
+| └──                          | unique-random@1.0.0                         |                            |                   |
+|                              |                                             |                            |                   |
+** wrote [[file:src/index.test.js][test module]]
+#+NAME: test_friends
+#+BEGIN_SRC js
+var expect = require('chai').expect;
+var friends = require('./index');
+
+describe('firends-anneesha', function() {
+  describe('all', function() {
+    it('should be an array of strings', function() {
+      expect(friends.all).to.satisfy(isArrayOfStrings);
+
+      function isArrayOfStrings(array) {
+        return array.every(function(item) {
+           return typeof item === 'string';
+        });
+      }
+    });
+    it('should contain `bandhan`', function() {
+      expect(friends.all).to.include('Bandhan');
+    });
+  });
+  describe('random', function() {
+    it('should return a random item from the starWars.all', function() {
+      var randomItem = friends.random();
+      expect(friends.all).to.include(randomItem);
+    });
+  });
+});
+#+END_SRC
