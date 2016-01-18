@@ -510,3 +510,17 @@ describe('firends-anneesha', function() {
   });
 });
 #+END_SRC
+
+* Automating Releases with semantic-release
+** install semantic-release
+#+call: cmdaync("npm install -D semantic-release")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
+
+** Update [[file:.travis.yml][Travis CI ]]
+** commit git with npm
+#+call: cmdaync("npm run commit")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
