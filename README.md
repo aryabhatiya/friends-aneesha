@@ -1,147 +1,14 @@
 call<sub>module</sub>()
 =======================
 
-|                 |
-|-----------------|
-| friends-aneesha |
-
-``` elisp
-  (last
-   (split-string
-    (replace-regexp-in-string "/" " "   (expand-file-name "")) ))
-```
-
-Keyboard Macro for diff
------------------------
-
-|                 |
-|-----------------|
-| friends-aneesha |
-
-``` example
-;; Original keys: e D NUL ESC > ESC w C-x C-o C-x o C-x o C-x C-o C-x o q y
-
-Command: last-kbd-macro
-Key: none
-
-Macro:
-
-e           ;; self-insert-command
-D           ;; self-insert-command
-NUL         ;; set-mark-command
-ESC >           ;; end-of-buffer
-ESC w           ;; kill-ring-save
-C-x C-o         ;; delete-blank-lines
-C-x o           ;; other-window
-C-x o           ;; other-window
-C-x C-o         ;; delete-blank-lines
-C-x o           ;; other-window
-q           ;; self-insert-command
-y           ;; self-insert-command
-
-```
-
-``` elisp
-(fset 'ashdiff
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("eD>woooqy" 0 "%d")) arg)))
-```
-
-Send data to PIPE
------------------
-
-CLOCK: \[2016-01-13 Wed 05:47\]--\[2016-01-13 Wed 05:58\] =&gt; 0:11
-
-``` bash
-<<check_pipeserver_running>>
-echo  $cmd   > $pipe
-```
-
-### check<sub>pipeserverrunning</sub>
-
-``` bash
-pipe="/tmp/"$mod
-[ ! -p $pipe ] && exit 1 || echo "command $DT is sended to $pipe"
-```
-
-``` example
-command  is sended to /tmp/friends-aneesha
-```
-
-### test Inline if
-
-``` bash
-if [ $counter -eq 1 ] then; echo "true";
-```
-
-Install Pandoc
---------------
-
-``` example
-command  is sended to /tmp/friends-aneesha
-```
-
-``` example
-command  is sended to /tmp/friends-aneesha
-```
-
-Pandoc org to markdown<sub>github</sub>
----------------------------------------
-
-``` bash
-/root/.cabal/bin/pandoc --from org --to markdown_github -o $dst $src
-```
-
-run git macro
--------------
-
-``` elisp
-(fset 'npmcommit
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("eDhwoooqyo<s     <e OAOAOAo" 0 "%d")) arg)))
-```
-
-``` example
-;; Original keys: # + c a 2*l : SPC c m d a y n c ( " n p m SPC r u n SPC c o 2*m i t " ) C-a C-c C-c
-
-Command: last-kbd-macro
-Key: none
-
-Macro:
-
-#           ;; self-insert-command
-+           ;; self-insert-command
-c           ;; self-insert-command
-a           ;; self-insert-command
-2*l         ;; self-insert-command
-:           ;; self-insert-command
-SPC         ;; self-insert-command
-c           ;; self-insert-command
-m           ;; self-insert-command
-d           ;; self-insert-command
-a           ;; self-insert-command
-y           ;; self-insert-command
-n           ;; self-insert-command
-c           ;; self-insert-command
-(           ;; self-insert-command
-"           ;; self-insert-command
-n           ;; self-insert-command
-p           ;; self-insert-command
-m           ;; self-insert-command
-SPC         ;; self-insert-command
-r           ;; self-insert-command
-u           ;; self-insert-command
-n           ;; self-insert-command
-SPC         ;; self-insert-command
-c           ;; self-insert-command
-o           ;; self-insert-command
-2*m         ;; self-insert-command
-i           ;; self-insert-command
-t           ;; self-insert-command
-"           ;; self-insert-command
-)           ;; self-insert-command
-C-a         ;; org-beginning-of-line
-C-c C-c         ;; org-ctrl-c-ctrl-c
-
-```
+|                                                                                                                                                                       |                               |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| friends-aneesha                                                                                                                                                       | A Javascript Bootstrat Devops |
+| \[!\[travis build\](<https://img.shields.io/travis/chowdhuryashraf/friends-aneesha.svg>)\](<https://travis-ci.org/chowdhuryashraf/friends-aneesha>)                   | Semantic-release              |
+| \[!\[Codecov coverage\](<https://img.shields.io/codecov/c/github/chowdhuryashraf/friends-aneesha.svg>)\](<https://codecov.io/github/chowdhuryashraf/friends-aneesha>) | TDD                           |
+| \[!\[npm\](<https://img.shields.io/npm/v/friends-aneesha.svg>)\](<https://www.npmjs.com/package/friends-aneesha>)                                                     | Microlibrary                  |
+| \[!\[npm\](<https://img.shields.io/npm/dm/friends-aneesha.svg>)\](<https://www.npmjs.com/package/friends-aneesha>)                                                    | Community Driven              |
+| \[!\[npm\](<https://img.shields.io/npm/v/friends-aneesha.svg>)\](<https://www.npmjs.com/package/friends-aneesha>)                                                     | Reproducable Research         |
 
 Npm module INIT
 ===============
@@ -751,3 +618,238 @@ command  is sended to /tmp/friends-aneesha
 
 New feature **pair**
 ====================
+
+``` example
+command  is sended to /tmp/friends-aneesha
+```
+
+codecov.io
+==========
+
+################ add configuration
+
+``` example
+*** /tmp/ediff17310uWU  2016-01-19 14:30:07.176000000 -0500
+--- /tmp/ediff173107ga  2016-01-19 14:30:07.180000000 -0500
+***************
+*** 8,13 ****
+--- 8,14 ----
+    },
+    "devDependencies": {
+      "chai": "3.4.1",
++     "codecov.io": "0.1.6",
+      "commitizen": "2.5.0",
+      "cz-conventional-changelog": "1.1.5",
+      "ghooks": "1.0.3",
+***************
+*** 30,35 ****
+--- 31,37 ----
+      "test:single": "istanbul cover -x *.test.js _mocha -- -R spec src/index.test.js",
+      "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+      "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100"
++     "report-coverage": "cat ./coverage/lcov.info | codecov"
+    },
+    "repository": {
+      "type": "git",
+
+```
+
+``` example
+@@ -15,6 +15,7 @@ script:
+   - npm run test:single
+   - npm run check-coverage
+ after_success:
++  - npm run report-coverage
+   - npm run semantic-release
+ branches:
+   except:
+```
+
+feat(pair): make circular pair with mod.
+========================================
+
+closes \#4 BREAKING CHANGE: sequential to circular pair
+
+################ code
+
+``` example
+@@ -22,7 +22,7 @@ function random(number){
+
+ function pair(n) {
+   var sequence = [];
+-  sequence[0] = nameOfFriendsOfAneesha[n-1];
+-  sequence[1] = nameOfFriendsOfAneesha[n];
++  sequence[0] = nameOfFriendsOfAneesha[ (n -1 ) % nameOfFriendsOfAneesha.length ];
++  sequence[1] = nameOfFriendsOfAneesha[ n % nameOfFriendsOfAneesha.length ];
+   return sequence;
+ }
+
+```
+
+``` example
+@@ -40,5 +40,11 @@ describe('firends-anneesha', function() {
+       expect(friendshipSequece1[0]).is.equal("Liana")
+       expect(friendshipSequece1[1]).is.equal("Asia")
+     });
++
++    it('should return circular', function() {
++      var friendshipSequece = friends.pair(13);
++      expect(friendshipSequece[0]).is.equal("Bandhan");
++      expect(friendshipSequece[1]).is.equal("Aneesha");
++    } );
+   });
+ });
+
+
+```
+
+update tag
+==========
+
+``` example
+command  is sended to /tmp/friends-aneesha
+```
+
+[Add cerficatges](http://shields.io/) in readme
+===============================================
+
+Emacs Setups
+============
+
+``` example
+nil
+```
+
+``` elisp
+  (last
+   (split-string
+    (replace-regexp-in-string "/" " "   (expand-file-name "")) ))
+```
+
+Keyboard Macro for diff
+-----------------------
+
+``` example
+;; Original keys: e D NUL ESC > ESC w C-x C-o C-x o C-x o C-x C-o C-x o q y
+
+Command: last-kbd-macro
+Key: none
+
+Macro:
+
+e           ;; self-insert-command
+D           ;; self-insert-command
+NUL         ;; set-mark-command
+ESC >           ;; end-of-buffer
+ESC w           ;; kill-ring-save
+C-x C-o         ;; delete-blank-lines
+C-x o           ;; other-window
+C-x o           ;; other-window
+C-x C-o         ;; delete-blank-lines
+C-x o           ;; other-window
+q           ;; self-insert-command
+y           ;; self-insert-command
+
+```
+
+``` elisp
+(fset 'ashdiff
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("eD>woooqy" 0 "%d")) arg)))
+```
+
+Send data to PIPE
+-----------------
+
+CLOCK: \[2016-01-13 Wed 05:47\]--\[2016-01-13 Wed 05:58\] =&gt; 0:11
+
+``` bash
+<<check_pipeserver_running>>
+echo  $cmd   > $pipe
+```
+
+### check<sub>pipeserverrunning</sub>
+
+``` bash
+pipe="/tmp/"$mod
+[ ! -p $pipe ] && exit 1 || echo "command $DT is sended to $pipe"
+```
+
+``` example
+command  is sended to /tmp/friends-aneesha
+```
+
+### test Inline if
+
+``` bash
+if [ $counter -eq 1 ] then; echo "true";
+```
+
+Install Pandoc
+--------------
+
+``` example
+command  is sended to /tmp/friends-aneesha
+```
+
+``` example
+command  is sended to /tmp/friends-aneesha
+```
+
+Pandoc org to markdown<sub>github</sub>
+---------------------------------------
+
+``` bash
+/root/.cabal/bin/pandoc --from org --to markdown_github -o $dst $src
+```
+
+run git macro
+-------------
+
+``` elisp
+(fset 'npmcommit
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("eDhwoooqyo<s     <e OAOAOAo" 0 "%d")) arg)))
+```
+
+``` example
+;; Original keys: # + c a 2*l : SPC c m d a y n c ( " n p m SPC r u n SPC c o 2*m i t " ) C-a C-c C-c
+
+Command: last-kbd-macro
+Key: none
+
+Macro:
+
+#           ;; self-insert-command
++           ;; self-insert-command
+c           ;; self-insert-command
+a           ;; self-insert-command
+2*l         ;; self-insert-command
+:           ;; self-insert-command
+SPC         ;; self-insert-command
+c           ;; self-insert-command
+m           ;; self-insert-command
+d           ;; self-insert-command
+a           ;; self-insert-command
+y           ;; self-insert-command
+n           ;; self-insert-command
+c           ;; self-insert-command
+(           ;; self-insert-command
+"           ;; self-insert-command
+n           ;; self-insert-command
+p           ;; self-insert-command
+m           ;; self-insert-command
+SPC         ;; self-insert-command
+r           ;; self-insert-command
+u           ;; self-insert-command
+n           ;; self-insert-command
+SPC         ;; self-insert-command
+c           ;; self-insert-command
+o           ;; self-insert-command
+2*m         ;; self-insert-command
+i           ;; self-insert-command
+t           ;; self-insert-command
+"           ;; self-insert-command
+)           ;; self-insert-command
+C-a         ;; org-beginning-of-line
+C-c C-c         ;; org-ctrl-c-ctrl-c
+
+```
