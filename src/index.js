@@ -18,3 +18,7 @@ function random(number){
   }
   return randomItems;
 }
+
+function doSomethings() {
+  console.log('hi');
+}

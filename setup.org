@@ -1,12 +1,12 @@
-* Moudle Name
+* call_module()
+| friends-aneesha |
+
 #+NAME: module
 #+BEGIN_SRC elisp  :results value
   (last
    (split-string
     (replace-regexp-in-string "/" " "   (expand-file-name "")) ))
 #+END_SRC
-
-#+RESULTS: module
 ** Keyboard Macro for diff
 | friends-aneesha |
 #+BEGIN_EXAMPLE
@@ -85,6 +85,55 @@ if [ $counter -eq 1 ] then; echo "true";
 #+END_SRC
 
 #+RESULTS: readme
+
+** run git macro
+#+BEGIN_SRC elisp
+(fset 'npmcommit
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("eDhwoooqyo<s		<e	OAOAOAo" 0 "%d")) arg)))
+#+END_SRC
+#+BEGIN_EXAMPLE
+;; Original keys: # + c a 2*l : SPC c m d a y n c ( " n p m SPC r u n SPC c o 2*m i t " ) C-a C-c C-c
+
+Command: last-kbd-macro
+Key: none
+
+Macro:
+
+#			;; self-insert-command
++			;; self-insert-command
+c			;; self-insert-command
+a			;; self-insert-command
+2*l			;; self-insert-command
+:			;; self-insert-command
+SPC			;; self-insert-command
+c			;; self-insert-command
+m			;; self-insert-command
+d			;; self-insert-command
+a			;; self-insert-command
+y			;; self-insert-command
+n			;; self-insert-command
+c			;; self-insert-command
+(			;; self-insert-command
+"			;; self-insert-command
+n			;; self-insert-command
+p			;; self-insert-command
+m			;; self-insert-command
+SPC			;; self-insert-command
+r			;; self-insert-command
+u			;; self-insert-command
+n			;; self-insert-command
+SPC			;; self-insert-command
+c			;; self-insert-command
+o			;; self-insert-command
+2*m			;; self-insert-command
+i			;; self-insert-command
+t			;; self-insert-command
+"			;; self-insert-command
+)			;; self-insert-command
+C-a			;; org-beginning-of-line
+C-c C-c			;; org-ctrl-c-ctrl-c
+
+#+END_EXAMPLE
 
 * Npm module INIT
   CLOCK: [2016-01-13 Wed 04:48]--[2016-01-13 Wed 04:55] =>  0:07
@@ -847,3 +896,30 @@ npm i -D ghooks
 : nil
 
 #+call: cmdaync("npm run commit")
+** Add coverage checking
+#+call: cmdaync("npm run test:single")
+#+call: cmdaync("npm run check-coverage")
+
+#+BEGIN_EXAMPLE
+*** /tmp/ediff253304p0	2016-01-19 10:09:50.384000000 -0500
+--- /tmp/ediff25330qzD	2016-01-19 10:09:50.384000000 -0500
+***************
+*** 18,20 ****
+--- 18,24 ----
+    }
+    return randomItems;
+  }
++
++ function doSomethings() {
++   console.log('hi');
++ }
+
+#+END_EXAMPLE
+
+#+call: cmdaync("npm run test:single")
+#+call: cmdaync("npm run check-coverage")
+#+RESULTS:
+: command  is sended to /tmp/friends-Ganesha
+#+call: cmdaync("npm run commit")
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
