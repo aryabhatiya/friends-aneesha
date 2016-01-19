@@ -3,10 +3,10 @@ language: node_js
 cache:
   directories:
     - node_modules
-notification:
+notifications:
   email: false
 node_js:
-  - iojs
+  - '4'
 before_install:
   - npm i -g npm@^2.0.0
 before_script:
@@ -15,3 +15,6 @@ script:
   - npm run test:single
 after_success:
   - npm run semantic-release
+branches:
+  except:
+    - "/^v\\d+\\.\\d+\\.\\d+$/"

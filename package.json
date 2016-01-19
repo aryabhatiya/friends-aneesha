@@ -1,6 +1,6 @@
 {
   "name": "friends-aneesha",
-  "version": "1.4.0-beta.0",
+  "version": "0.0.0-semanticly-release",
   "description": "New Module bootstrap",
   "main": "src/index.js",
   "dependencies": {
@@ -11,7 +11,7 @@
     "commitizen": "2.5.0",
     "cz-conventional-changelog": "1.1.5",
     "mocha": "2.3.4",
-    "semantic-release": "4.3.5"
+    "semantic-release": "^4.3.5"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
@@ -20,7 +20,7 @@
     "commit": "git-cz",
     "test": "mocha src/index.test.js -w",
     "test:single": "mocha src/index.test.js",
-    "semantic-release": "semantic-release pre && npm publish &&semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",

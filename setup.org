@@ -654,3 +654,8 @@ npm list commitizen  cz-conventional-changelog
 
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
+
+#+call: cmdaync("npm run semantic-release")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
