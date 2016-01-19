@@ -1001,3 +1001,8 @@ closes #4 BREAKING CHANGE: sequential to circular pair
 
 
 #+END_EXAMPLE
+* update tag
+#+call: cmdaync("git fetch origin master --tags")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
