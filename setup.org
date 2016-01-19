@@ -512,6 +512,14 @@ describe('firends-anneesha', function() {
 #+END_SRC
 
 * Automating Releases with semantic-release
+** install & canfigure semantic-release-cli
+#+call: cmdaync("apt-get install libgnome-keyring-dev")
+#+call: cmdaync("npm install -g semantic-release-cli")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
+
+#+call: cmdaync("semantic-release-cli setup")
 ** install semantic-release
 #+call: cmdaync("npm install -D semantic-release")
 
@@ -533,6 +541,19 @@ npm list commitizen  cz-conventional-changelog
 | │                            | └──                                         | cz-conventional-changelog@1.1.4 |
 | └──                          | cz-conventional-changelog@1.1.5             |                                 |
 |                              |                                             |                                 |
+
+#+BEGIN_SRC sh
+ls -l node_modules/commitizen/bin/commitizen
+#+END_SRC
+
+#+RESULTS:
+: -rwxr-xr-x 1 root root 49 Jan 10 09:02 node_modules/commitizen/bin/commitizen
+
+#+call: cmdaync("node_modules/commitizen/bin/commitizen init cz-conventional-changelog --save --save-exact --force")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha
+
 
 ** Update [[file:.travis.yml][Travis CI ]]
 ** commit git with npm
@@ -600,18 +621,6 @@ npm list commitizen  cz-conventional-changelog
 #+END_EXAMPLE
 ** run npm git
 #+call: cmdaync("npm run commit")
-
-#+RESULTS:
-: command  is sended to /tmp/friends-aneesha
-#+call: cmdaync("git push origin master")
-
-#+RESULTS:
-: command  is sended to /tmp/friends-aneesha
-
-#+call: cmdaync("npm run commit")
-
-#+RESULTS:
-: command  is sended to /tmp/friends-aneesha
 ** and test:single
 #+BEGIN_EXAMPLE
 *** /tmp/ediff253305Js	2016-01-18 17:13:14.748000000 -0500
@@ -633,29 +642,46 @@ npm list commitizen  cz-conventional-changelog
     - npm run semantic-release
 
 #+END_EXAMPLE
-
 #+BEGIN_EXAMPLE
-*** /tmp/ediff25330gvy	2016-01-18 17:15:10.644000000 -0500
---- /tmp/ediff25330S5B	2016-01-18 17:15:10.644000000 -0500
+*** /tmp/ediff25330xuB	2016-01-18 21:46:12.580000000 -0500
+--- /tmp/ediff25330-4H	2016-01-18 21:46:12.584000000 -0500
 ***************
-*** 19,24 ****
---- 19,25 ----
+*** 13,20 ****
+      "mocha": "2.3.4",
+      "semantic-release": "^4.3.5"
+    },
+!   "czConfig": {
+!     "path": "node_modules/cz-conventional-changelog"
+    },
     "scripts": {
       "commit": "git-cz",
-      "test": "mocha src/index.test.js -w",
-+     "test:single": "mocha src/index.test.js",
-      "semantic-release": "semantic-release pre && npm publish &&semantic-release post"
+--- 13,22 ----
+      "mocha": "2.3.4",
+      "semantic-release": "^4.3.5"
     },
-    "repository": {
+!   "config": {
+!     "commitizen": {
+!       "path": "./node_modules/cz-conventional-changelog"
+!     }
+    },
+    "scripts": {
+      "commit": "git-cz",
+***************
+*** 32,35 ****
+    ],
+    "author": "Chowdhury Ashraf",
+    "license": "MIT"
+! }
+--- 34,37 ----
+    ],
+    "author": "Chowdhury Ashraf",
+    "license": "MIT"
+! }
+\ No newline at end of file
 
 #+END_EXAMPLE
 ** run npm git
 #+call: cmdaync("npm run commit")
-
-#+RESULTS:
-: command  is sended to /tmp/friends-aneesha
-
-#+call: cmdaync("npm run semantic-release")
 
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
