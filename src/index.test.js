@@ -40,5 +40,11 @@ describe('firends-anneesha', function() {
       expect(friendshipSequece1[0]).is.equal("Liana")
       expect(friendshipSequece1[1]).is.equal("Asia")
     });
+
+    it('should return circular', function() {
+      var friendshipSequece = friends.pair(13);
+      expect(friendshipSequece[0]).is.equal("Bandhan");
+      expect(friendshipSequece[1]).is.equal("Aneesha");
+    } );
   });
 });

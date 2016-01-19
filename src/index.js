@@ -22,7 +22,7 @@ function random(number){
 
 function pair(n) {
   var sequence = [];
-  sequence[0] = nameOfFriendsOfAneesha[n-1];
-  sequence[1] = nameOfFriendsOfAneesha[n];
+  sequence[0] = nameOfFriendsOfAneesha[ (n -1 ) % nameOfFriendsOfAneesha.length ];
+  sequence[1] = nameOfFriendsOfAneesha[ n % nameOfFriendsOfAneesha.length ];
   return sequence;
 }
