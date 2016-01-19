@@ -685,3 +685,73 @@ ls -l node_modules/commitizen/bin/commitizen
 
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
+* Automatically running tests before commits with ghooks
+#+BEGIN_SRC sh
+npm i -D ghooks
+#+END_SRC
+
+#+RESULTS:
+|                                          |                                             |                     |                                                                 |
+| >                                        | ghooks@1.0.3                                | install             | /usr/local/src/microlibrary/friends-aneesha/node_modules/ghooks |
+| >                                        | node                                        | ./bin/install       |                                                                 |
+|                                          |                                             |                     |                                                                 |
+| friends-aneesha@0.0.0-semanticly-release | /usr/local/src/microlibrary/friends-aneesha |                     |                                                                 |
+| ├─┬                                      | ghooks@1.0.3                                |                     |                                                                 |
+| │                                        | ├─┬                                         | findup@0.1.5        |                                                                 |
+| │                                        | │                                           | ├──                 | colors@0.6.2                                                    |
+| │                                        | │                                           | └──                 | commander@2.1.0                                                 |
+| │                                        | ├─┬                                         | lodash.clone@3.0.3  |                                                                 |
+| │                                        | │                                           | └─┬                 | lodash._baseclone@3.3.0                                         |
+| │                                        | │                                           | ├──                 | lodash._arraycopy@3.0.0                                         |
+| │                                        | │                                           | ├──                 | lodash._arrayeach@3.0.0                                         |
+| │                                        | │                                           | └──                 | lodash._basefor@3.0.3                                           |
+| │                                        | ├──                                         | manage-path@2.0.0   |                                                                 |
+| │                                        | └──                                         | spawn-command@0.0.2 |                                                                 |
+| └──                                      | unique-random-array@1.0.0                   |                     |                                                                 |
+|                                          |                                             |                     |                                                                 |
+#+BEGIN_EXAMPLE
+*** /tmp/ediff25330ACK	2016-01-18 22:08:07.960000000 -0500
+--- /tmp/ediff25330NMQ	2016-01-18 22:08:07.960000000 -0500
+***************
+*** 10,21 ****
+--- 10,25 ----
+      "chai": "3.4.1",
+      "commitizen": "2.5.0",
+      "cz-conventional-changelog": "1.1.5",
++     "ghooks": "1.0.3",
+      "mocha": "2.3.4",
+      "semantic-release": "^4.3.5"
+    },
+    "config": {
+      "commitizen": {
+        "path": "./node_modules/cz-conventional-changelog"
++     },
++     "ghooks": {
++       "pre-commit": "npm run test:single"
+      }
+    },
+    "scripts": {
+***************
+*** 34,37 ****
+    ],
+    "author": "Chowdhury Ashraf",
+    "license": "MIT"
+! }
+\ No newline at end of file
+--- 38,41 ----
+    ],
+    "author": "Chowdhury Ashraf",
+    "license": "MIT"
+! }
+
+#+END_EXAMPLE
+
+#+NAME: npmcommit
+#+BEGIN_SRC sh :noweb yes
+<<cmdaync("npm run commit")>>
+#+END_SRC
+
+#+call: npmcommit()
+
+#+RESULTS:
+: nil
