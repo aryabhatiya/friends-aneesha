@@ -1,15 +1,16 @@
 call<sub>module</sub>()
 =======================
 
+|                               |                  |     |              |                  |                       |
+|-------------------------------|------------------|-----|--------------|------------------|-----------------------|
+| friends-aneesha               |                  |     |              |                  |                       |
+| A Javascript Bootstrat Devops | Semantic-release | TDD | Microlibrary | Community Driven | Reproducable Research |
+
 [![travis build](https://img.shields.io/travis/chowdhuryashraf/friends-aneesha.svg)](https://travis-ci.org/chowdhuryashraf/friends-aneesha)
 [![Codecov coverage](https://img.shields.io/codecov/c/github/chowdhuryashraf/friends-aneesha.svg)](https://codecov.io/github/chowdhuryashraf/friends-aneesha)
 [![npm](https://img.shields.io/npm/v/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
 [![npm](https://img.shields.io/npm/dm/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
 [![npm](https://img.shields.io/npm/v/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
-
-
-|-----------------|-------------------------------|------------------|-----|--------------|------------------|-----------------------|
-| friends-aneesha | A Javascript Bootstrat Devops | Semantic-release | TDD | Microlibrary | Community Driven | Reproducable Research |
 
 Npm module INIT
 ===============
@@ -726,6 +727,19 @@ nil
    (split-string
     (replace-regexp-in-string "/" " "   (expand-file-name "")) ))
 ```
+
+bages
+-----
+
+``` example
+[![travis build](https://img.shields.io/travis/chowdhuryashraf/friends-aneesha.svg)](https://travis-ci.org/chowdhuryashraf/friends-aneesha)
+[![Codecov coverage](https://img.shields.io/codecov/c/github/chowdhuryashraf/friends-aneesha.svg)](https://codecov.io/github/chowdhuryashraf/friends-aneesha)
+[![npm](https://img.shields.io/npm/v/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
+[![npm](https://img.shields.io/npm/dm/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
+[![npm](https://img.shields.io/npm/v/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
+```
+
+Npm module INIT `=============`
 
 Keyboard Macro for diff
 -----------------------
