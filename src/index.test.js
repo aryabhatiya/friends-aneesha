@@ -30,4 +30,15 @@ describe('firends-anneesha', function() {
       });
     });
   });
+
+  describe("pair", function() {
+    it('should return pair of friends in a sequence', function() {
+      var friendshipSequece = friends.pair(2);
+      expect(friendshipSequece[0]).is.equal("Ghumpori")
+      expect(friendshipSequece[1]).is.equal("Maliha")
+      var friendshipSequece1 = friends.pair(5);
+      expect(friendshipSequece1[0]).is.equal("Liana")
+      expect(friendshipSequece1[1]).is.equal("Asia")
+    });
+  });
 });

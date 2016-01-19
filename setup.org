@@ -923,3 +923,9 @@ npm i -D ghooks
 #+call: cmdaync("npm run commit")
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
+* New feature *pair*
+#+call: readme()
+#+call: cmdaync("npm run commit")
+
+#+RESULTS:
+: command  is sended to /tmp/friends-aneesha

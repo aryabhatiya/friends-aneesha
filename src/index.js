@@ -5,7 +5,8 @@ var randomItems = [];
 
 module.exports = {
   all: nameOfFriendsOfAneesha,
-  random: random
+  random: random,
+  pair: pair
 };
 
 function random(number){
@@ -19,6 +20,9 @@ function random(number){
   return randomItems;
 }
 
-function doSomethings() {
-  console.log('hi');
+function pair(n) {
+  var sequence = [];
+  sequence[0] = nameOfFriendsOfAneesha[n-1];
+  sequence[1] = nameOfFriendsOfAneesha[n];
+  return sequence;
 }
