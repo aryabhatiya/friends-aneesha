@@ -1,7 +1,5 @@
-* call_module()
-| friends-aneesha               |                  |     |              |                  |                       |
-| A Javascript Bootstrat Devops | Semantic-release | TDD | Microlibrary | Community Driven | Reproducable Research |
-
+| A Javascript Bootstrat Devops | Semantic-release | TDD                   |
+| Microlibrary                  | Community Driven | Reproducable Research |
 * Npm module INIT
   CLOCK: [2016-01-13 Wed 04:48]--[2016-01-13 Wed 04:55] =>  0:07
   :PROPERTIES:
@@ -106,31 +104,18 @@ module.exports = {
 
 * Setup GIT
 ** Prepare [[README.md]]
-#+BEGIN_SRC elisp :var filename=module[0]
-  (defun ash-append-string-to-file (s filename)
-    (with-temp-buffer
-      (insert s)
-      (when (file-writable-p filename)
-         (write-region (point-min) (point-max) filename nil))))
-  (ash-append-string-to-file (concat "# " filename "\n" ) "README.md" )
-#+END_SRC
+#+call: fwrite("README.md",  concat("# ", module[0] , ""))
 
 #+RESULTS:
+: nil
+#+call: fread("README.md")
 
-*** Prepare Test
-#+BEGIN_SRC elisp
-  (defun file-string (file)
-    "Read the contents of a file and return as a string."
-    (with-temp-buffer
-      (insert-file-contents file)
-      (buffer-string)))
-  (file-string "README.md")
-#+END_SRC
 #+RESULTS:
 : # friends-aneesha
 
 ** Git Init
-#+BEGIN_SRC sh
+#+NAME: gitinit
+#+BEGIN_SRC sh :var name="" :var project=concat("", module[0], ".git")
 git init
 git remote add origin https://github.com/chowdhuryashraf/friends-aneesha.git
 git remote -v
@@ -141,6 +126,13 @@ git remote -v
 | origin        | [[https://github.com/chowdhuryashraf/friends-aneesha.git]] | (fetch) |            |    |                                                   |
 | origin        | [[https://github.com/chowdhuryashraf/friends-aneesha.git]] | (push)  |            |    |                                                   |
 
+* Git TAG
+#+NAME: gittag
+#+BEGIN_SRC sh :var tag=""
+git tag $tag
+#+END_SRC
+
+#+RESULTS:
 * Npm publish
 ** Publish to npm
    CLOCK: [2016-01-13 Wed 15:04]--[2016-01-13 Wed 15:05] =>  0:01
@@ -242,13 +234,6 @@ Aneesha
 Maliha
 :END:
 
-* Git TAG
-#+NAME: gittag
-#+BEGIN_SRC sh :var tag=""
-git tag $tag
-#+END_SRC
-
-#+RESULTS:
 * Publishing a beta version
 ** Adding 2 names in aneesha's [[/usr/local/src/microlibrary/friends-aneesha/src/friends-names.json][friend list]]
 #+BEGIN_EXAMPLE
@@ -382,7 +367,6 @@ Maliha
 Arjab
 Esha
 :END:
-* Test
 * Test friends-aneesha@1.4.0-beta.0
 ** Adding test libraries mocha chai
 #+BEGIN_SRC sh
@@ -674,6 +658,7 @@ npm i -D ghooks
 | │                                        | └──                                         | spawn-command@0.0.2 |                                                                 |
 | └──                                      | unique-random-array@1.0.0                   |                     |                                                                 |
 |                                          |                                             |                     |                                                                 |
+
 #+BEGIN_EXAMPLE
 *** /tmp/ediff25330ACK	2016-01-18 22:08:07.960000000 -0500
 --- /tmp/ediff25330NMQ	2016-01-18 22:08:07.960000000 -0500
@@ -874,7 +859,9 @@ closes #4 BREAKING CHANGE: sequential to circular pair
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
 * [[http://shields.io/][Add cerficatges]] in readme
+* ES6 Supports
 * Emacs Setups
+** module
 #+call: readme()
 
 #+RESULTS:
@@ -887,18 +874,14 @@ closes #4 BREAKING CHANGE: sequential to circular pair
     (replace-regexp-in-string "/" " "   (expand-file-name "")) ))
 #+END_SRC
 ** bages
-#+BEGIN_EXAMPLE
+#+NAME: bages
+#+BEGIN_SRC  sh
 [![travis build](https://img.shields.io/travis/chowdhuryashraf/friends-aneesha.svg)](https://travis-ci.org/chowdhuryashraf/friends-aneesha)
-[![Codecov coverage](https://img.shields.io/codecov/c/github/chowdhuryashraf/friends-aneesha.svg)](https://codecov.io/github/chowdhuryashraf/friends-aneesha)
-[![npm](https://img.shields.io/npm/v/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
-[![npm](https://img.shields.io/npm/dm/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
-[![npm](https://img.shields.io/npm/v/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
-#+END_EXAMPLE
-
-
-
-Npm module INIT
-===============
+[![codecov coverage](https://img.shields.io/codecov/c/github/chowdhuryashraf/friends-aneesha.svg)](https://codecov.io/github/chowdhuryashraf/friends-aneesha)
+[![version](https://img.shields.io/npm/v/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
+[![downloads](https://img.shields.io/npm/dm/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
+[![MIT License](https://img.shields.io/npm/l/friends-aneesha.svg)](https://www.npmjs.com/package/friends-aneesha)
+#+END_SRC
 
 ** Keyboard Macro for diff
 #+BEGIN_EXAMPLE
@@ -956,6 +939,27 @@ pipe="/tmp/"$mod
 if [ $counter -eq 1 ] then; echo "true";
 #+END_SRC
 
+** file contents
+#+NAME: fwrite
+#+BEGIN_SRC elisp :var filename=""  :var s=""
+    (with-temp-buffer
+      (insert s)
+      (when (file-writable-p filename)
+         (write-region (point-min) (point-max) filename nil))))
+#+END_SRC
+
+
+*** Prepare Test
+#+name: fread
+#+BEGIN_SRC elisp :var filename=""
+    (with-temp-buffer
+      (insert-file-contents filename)
+      (buffer-string)))
+#+END_SRC
+
+#+RESULTS:
+: # friends-aneesha
+
 ** Install Pandoc
 #+call: cmdaync("apt-get install haskell-platform haskell-platform-doc")
 #+call: cmdaync("cabal update && cabal install cabal-install ")
@@ -971,12 +975,49 @@ if [ $counter -eq 1 ] then; echo "true";
 : command  is sended to /tmp/friends-aneesha
 
 ** Pandoc org to markdown_github
+#+call: fwrite("README.md", readme())
+
+#+RESULTS:
+: nil
+
 #+NAME: readme
-#+BEGIN_SRC sh :var src="setup.org" :var dst="README.md"
+#+BEGIN_SRC sh :var src="setup.org" :var dst="README.md" :noweb yes :post bages()
 /root/.cabal/bin/pandoc --from org --to markdown_github -o $dst $src
 #+END_SRC
 
-#+RESULTS: readme
+#+name: bagesbuf
+#+BEGIN_SRC elisp :var buf=write_bages() :var mod=module[0] :var end=fread("README.md")
+(progn
+(switch-to-buffer-other-window "*README.md*")
+(erase-buffer)
+(insert (concat  buf  "\n" mod "\n" "===============" "\n" end))
+(other-window 1))
+#+END_SRC
+
+#+RESULTS: bagesbuf
+
+#+RESULTS: bages
+
+
+#+NAME: write_bages
+#+BEGIN_SRC sh :noweb yes
+write_bages= <<begin>>
+<<bages>>
+<<end>>
+#+END_SRC
+
+#+RESULTS: write_bages
+
+#+NAME: begin
+#+BEGIN_SRC sh  :noweb yes :results verbatim
+echo $(cat << 'BBL_START'
+#+END_SRC
+
+#+NAME: end
+#+BEGIN_SRC sh
+BBL_START
+)
+#+END_SRC
 
 ** run git macro
 #+BEGIN_SRC elisp
