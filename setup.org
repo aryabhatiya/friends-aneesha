@@ -1,6 +1,7 @@
 | A Javascript Bootstrat Devops | Semantic-release | TDD                   |
 | Microlibrary                  | Community Driven | Reproducable Research |
-* Npm module INIT
+* Npm Setup
+** Configure NPM
 #+BEGIN_SRC sh :var EMAIL="chowdhury.k.ashraf@gmail.com" URL=""
   npm set init-author-email $EMAIL
   npm set init-author-url $URL
@@ -10,7 +11,7 @@
 #+END_SRC
 
 ** [[~/.npmrc][npm rc]] for npm setting
-** Add npm user
+** Add npm user ( if you don't have npm account )
 #+NAME: npm-adduser
 #+BEGIN_EXAMPLE
 npm adduser
@@ -23,7 +24,6 @@ npm adduser
 #+BEGIN_SRC sh :results verbatim drawer
 npm version
 #+END_SRC
-
 *** init cmd
 #+NAME: npm-init
 #+BEGIN_EXAMPLE
@@ -38,12 +38,13 @@ npm init
 *** [[./package.json][package]]
 * init module
 ** Module firend_anneesha
-*** Install unique-random-array
+*** Install Dependencies
 #+BEGIN_SRC sh :resutls verbatim drawer
 npm install unique-random-array
 #+END_SRC
 
 #+RESULTS:
+
 *** Write module [[./src/index.js][module src]]
 #+BEGIN_SRC js :tangle src/index.js :mkdirp yes
 var uniqueRandomArray = require('unique-random-array');
@@ -325,8 +326,8 @@ Maliha
 Arjab
 Esha
 :END:
-* Test friends-aneesha@1.4.0-beta.0
-** Adding test libraries mocha chai
+** Test friends-aneesha@1.4.0-beta.0
+*** Adding test libraries mocha chai
 #+BEGIN_SRC sh
 npm install --save-dev mocha
 #+END_SRC
@@ -388,7 +389,7 @@ npm list
 | └─┬                          | unique-random-array@1.0.0                   |                            |                   |
 | └──                          | unique-random@1.0.0                         |                            |                   |
 |                              |                                             |                            |                   |
-** wrote [[file:src/index.test.js][test module]]
+*** wrote [[file:src/index.test.js][test module]]
 #+NAME: test_friends
 #+BEGIN_SRC js
 var expect = require('chai').expect;
@@ -468,12 +469,83 @@ ls -l node_modules/commitizen/bin/commitizen
 
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
-* Add new feature *returns array of random number*
+** Automatically running tests before commits with ghooks
+#+BEGIN_SRC sh
+npm i -D ghooks
+#+END_SRC
+
+#+RESULTS:
+|                                          |                                             |                     |                                                                 |
+| >                                        | ghooks@1.0.3                                | install             | /usr/local/src/microlibrary/friends-aneesha/node_modules/ghooks |
+| >                                        | node                                        | ./bin/install       |                                                                 |
+|                                          |                                             |                     |                                                                 |
+| friends-aneesha@0.0.0-semanticly-release | /usr/local/src/microlibrary/friends-aneesha |                     |                                                                 |
+| ├─┬                                      | ghooks@1.0.3                                |                     |                                                                 |
+| │                                        | ├─┬                                         | findup@0.1.5        |                                                                 |
+| │                                        | │                                           | ├──                 | colors@0.6.2                                                    |
+| │                                        | │                                           | └──                 | commander@2.1.0                                                 |
+| │                                        | ├─┬                                         | lodash.clone@3.0.3  |                                                                 |
+| │                                        | │                                           | └─┬                 | lodash._baseclone@3.3.0                                         |
+| │                                        | │                                           | ├──                 | lodash._arraycopy@3.0.0                                         |
+| │                                        | │                                           | ├──                 | lodash._arrayeach@3.0.0                                         |
+| │                                        | │                                           | └──                 | lodash._basefor@3.0.3                                           |
+| │                                        | ├──                                         | manage-path@2.0.0   |                                                                 |
+| │                                        | └──                                         | spawn-command@0.0.2 |                                                                 |
+| └──                                      | unique-random-array@1.0.0                   |                     |                                                                 |
+|                                          |                                             |                     |                                                                 |
+
 #+BEGIN_EXAMPLE
-*** /tmp/ediff25330DRd	2016-01-18 16:26:52.536000000 -0500
+**** /tmp/ediff25330ACK	2016-01-18 22:08:07.960000000 -0500
+--- /tmp/ediff25330NMQ	2016-01-18 22:08:07.960000000 -0500
+***************
+**** 10,21 ****
+--- 10,25 ----
+      "chai": "3.4.1",
+      "commitizen": "2.5.0",
+      "cz-conventional-changelog": "1.1.5",
++     "ghooks": "1.0.3",
+      "mocha": "2.3.4",
+      "semantic-release": "^4.3.5"
+    },
+    "config": {
+      "commitizen": {
+        "path": "./node_modules/cz-conventional-changelog"
++     },
++     "ghooks": {
++       "pre-commit": "npm run test:single"
+      }
+    },
+    "scripts": {
+***************
+**** 34,37 ****
+    ],
+    "author": "Chowdhury Ashraf",
+    "license": "MIT"
+! }
+\ No newline at end of file
+--- 38,41 ----
+    ],
+    "author": "Chowdhury Ashraf",
+    "license": "MIT"
+! }
+
+#+END_EXAMPLE
+
+#+NAME: npmcommit
+#+BEGIN_SRC sh :noweb yes
+<<cmdaync("npm run commit")>>
+#+END_SRC
+
+#+call: npmcommit()
+
+#+RESULTS:
+: nil
+** Add new feature *returns array of random number*
+#+BEGIN_EXAMPLE
+**** /tmp/ediff25330DRd	2016-01-18 16:26:52.536000000 -0500
 --- /tmp/ediff25330Qbj	2016-01-18 16:26:52.540000000 -0500
 ***************
-*** 1,8 ****
+**** 1,8 ****
 -
   var uniqueRandomArray = require('unique-random-array');
 ! var starWarsNames = require('./friends-names.json');
@@ -506,10 +578,10 @@ ls -l node_modules/commitizen/bin/commitizen
 
 #+END_EXAMPLE
 #+BEGIN_EXAMPLE
-*** /tmp/ediff25330QpL	2016-01-18 16:37:28.704000000 -0500
+**** /tmp/ediff25330QpL	2016-01-18 16:37:28.704000000 -0500
 --- /tmp/ediff25330dzR	2016-01-18 16:37:28.704000000 -0500
 ***************
-*** 21,25 ****
+**** 21,25 ****
 --- 21,33 ----
         var randomItem = friends.random();
         expect(friends.all).to.include(randomItem);
@@ -526,14 +598,14 @@ ls -l node_modules/commitizen/bin/commitizen
   });
 
 #+END_EXAMPLE
-** run npm git
+*** run npm git
 #+call: cmdaync("npm run commit")
-** and test:single
+*** and test:single
 #+BEGIN_EXAMPLE
-*** /tmp/ediff253305Js	2016-01-18 17:13:14.748000000 -0500
+**** /tmp/ediff253305Js	2016-01-18 17:13:14.748000000 -0500
 --- /tmp/ediff25330GUy	2016-01-18 17:13:14.752000000 -0500
 ***************
-*** 12,17 ****
+**** 12,17 ****
   before_script:
     - npm prune
   script:
@@ -550,10 +622,10 @@ ls -l node_modules/commitizen/bin/commitizen
 
 #+END_EXAMPLE
 #+BEGIN_EXAMPLE
-*** /tmp/ediff25330xuB	2016-01-18 21:46:12.580000000 -0500
+**** /tmp/ediff25330xuB	2016-01-18 21:46:12.580000000 -0500
 --- /tmp/ediff25330-4H	2016-01-18 21:46:12.584000000 -0500
 ***************
-*** 13,20 ****
+**** 13,20 ****
       "mocha": "2.3.4",
       "semantic-release": "^4.3.5"
     },
@@ -574,7 +646,7 @@ ls -l node_modules/commitizen/bin/commitizen
     "scripts": {
       "commit": "git-cz",
 ***************
-*** 32,35 ****
+**** 32,35 ****
     ],
     "author": "Chowdhury Ashraf",
     "license": "MIT"
@@ -587,82 +659,11 @@ ls -l node_modules/commitizen/bin/commitizen
 \ No newline at end of file
 
 #+END_EXAMPLE
-** run npm git
+*** run npm git
 #+call: cmdaync("npm run commit")
 
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
-* Automatically running tests before commits with ghooks
-#+BEGIN_SRC sh
-npm i -D ghooks
-#+END_SRC
-
-#+RESULTS:
-|                                          |                                             |                     |                                                                 |
-| >                                        | ghooks@1.0.3                                | install             | /usr/local/src/microlibrary/friends-aneesha/node_modules/ghooks |
-| >                                        | node                                        | ./bin/install       |                                                                 |
-|                                          |                                             |                     |                                                                 |
-| friends-aneesha@0.0.0-semanticly-release | /usr/local/src/microlibrary/friends-aneesha |                     |                                                                 |
-| ├─┬                                      | ghooks@1.0.3                                |                     |                                                                 |
-| │                                        | ├─┬                                         | findup@0.1.5        |                                                                 |
-| │                                        | │                                           | ├──                 | colors@0.6.2                                                    |
-| │                                        | │                                           | └──                 | commander@2.1.0                                                 |
-| │                                        | ├─┬                                         | lodash.clone@3.0.3  |                                                                 |
-| │                                        | │                                           | └─┬                 | lodash._baseclone@3.3.0                                         |
-| │                                        | │                                           | ├──                 | lodash._arraycopy@3.0.0                                         |
-| │                                        | │                                           | ├──                 | lodash._arrayeach@3.0.0                                         |
-| │                                        | │                                           | └──                 | lodash._basefor@3.0.3                                           |
-| │                                        | ├──                                         | manage-path@2.0.0   |                                                                 |
-| │                                        | └──                                         | spawn-command@0.0.2 |                                                                 |
-| └──                                      | unique-random-array@1.0.0                   |                     |                                                                 |
-|                                          |                                             |                     |                                                                 |
-
-#+BEGIN_EXAMPLE
-*** /tmp/ediff25330ACK	2016-01-18 22:08:07.960000000 -0500
---- /tmp/ediff25330NMQ	2016-01-18 22:08:07.960000000 -0500
-***************
-*** 10,21 ****
---- 10,25 ----
-      "chai": "3.4.1",
-      "commitizen": "2.5.0",
-      "cz-conventional-changelog": "1.1.5",
-+     "ghooks": "1.0.3",
-      "mocha": "2.3.4",
-      "semantic-release": "^4.3.5"
-    },
-    "config": {
-      "commitizen": {
-        "path": "./node_modules/cz-conventional-changelog"
-+     },
-+     "ghooks": {
-+       "pre-commit": "npm run test:single"
-      }
-    },
-    "scripts": {
-***************
-*** 34,37 ****
-    ],
-    "author": "Chowdhury Ashraf",
-    "license": "MIT"
-! }
-\ No newline at end of file
---- 38,41 ----
-    ],
-    "author": "Chowdhury Ashraf",
-    "license": "MIT"
-! }
-
-#+END_EXAMPLE
-
-#+NAME: npmcommit
-#+BEGIN_SRC sh :noweb yes
-<<cmdaync("npm run commit")>>
-#+END_SRC
-
-#+call: npmcommit()
-
-#+RESULTS:
-: nil
 * Adding code coverage recording with Istanbul
 ** Installation
 #+call: cmdaync("npm install -D istanbul")
@@ -740,7 +741,7 @@ npm i -D ghooks
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
 * codecov.io
-#+call: cmdaync("npm install -D codecov.io")
+  #+call: cmdaync("npm install -D codecov.io")
 **************** add configuration
 #+BEGIN_EXAMPLE
 *** /tmp/ediff17310uWU	2016-01-19 14:30:07.176000000 -0500
@@ -816,5 +817,3 @@ closes #4 BREAKING CHANGE: sequential to circular pair
 
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
-* [[http://shields.io/][Add cerficatges]] in readme
-* ES6 Supports
