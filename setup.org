@@ -1,11 +1,7 @@
 | A Javascript Bootstrat Devops | Semantic-release | TDD                   |
 | Microlibrary                  | Community Driven | Reproducable Research |
 * Npm module INIT
-  CLOCK: [2016-01-13 Wed 04:48]--[2016-01-13 Wed 04:55] =>  0:07
-  :PROPERTIES:
-  :Effort:   0:08
-  :END:
-#+BEGIN_SRC sh :var EMAIL="chowdhury.k.ashraf@gmail.com" URL="http://23.227.183.105"
+#+BEGIN_SRC sh :var EMAIL="chowdhury.k.ashraf@gmail.com" URL=""
   npm set init-author-email $EMAIL
   npm set init-author-url $URL
   npm set init-license=MIT
@@ -13,22 +9,14 @@
   echo $EMAIL $URL
 #+END_SRC
 
-#+RESULTS:
-: chowdhury.k.ashraf@gmail.com http://23.227.183.105
-
 ** [[~/.npmrc][npm rc]] for npm setting
 ** Add npm user
-   CLOCK: [2016-01-13 Wed 08:12]--[2016-01-13 Wed 08:35] =>  0:23
-   CLOCK: [2016-01-13 Wed 07:52]--[2016-01-13 Wed 08:12] =>  0:20
-   CLOCK: [2016-01-13 Wed 06:10]--[2016-01-13 Wed 06:11] =>  0:01
-   :PROPERTIES:
-   :Effort:   0:23
-   :END:
+#+NAME: npm-adduser
+#+BEGIN_EXAMPLE
+npm adduser
+#+END_EXAMPLE
 
-#+CALL: cmdaync(cmd="npm adduser")
-
-#+RESULTS:
-: command  is sended to /tmp/friends-aneesha
+#+CALL: cmdaync(npm-adduser)
 
 ** npm init
 *** Check NPM Version
@@ -36,23 +24,17 @@
 npm version
 #+END_SRC
 
-#+RESULTS:
-:RESULTS:
-{ npm: '3.5.0',
-  ares: '1.10.1-DEV',
-  http_parser: '2.5.0',
-  modules: '46',
-  node: '4.2.1',
-  openssl: '1.0.2d',
-  uv: '1.7.5',
-  v8: '4.5.103.35',
-  zlib: '1.2.8' }
-:END:
 *** init cmd
-#+CALL: cmdaync(cmd="npm init")
+#+NAME: npm-init
+#+BEGIN_EXAMPLE
+npm init
+#+END_EXAMPLE
+
+#+CALL: cmdaync(npm-init)
 
 #+RESULTS:
 : command  is sended to /tmp/friends-aneesha
+
 *** [[./package.json][package]]
 * init module
 ** Module firend_anneesha
