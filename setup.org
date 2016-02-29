@@ -87,6 +87,7 @@ module.exports = {
 
 * Setup GIT
 #+call: readme()
+
 #+name: thisproject
 #+call: giturl("chowdhuryashraf", module[0])
 
@@ -540,7 +541,8 @@ npm i -D ghooks
 
 #+RESULTS:
 : nil
-** Add new feature *returns array of random number*
+** Add new feature that returns array of random number
+
 #+BEGIN_EXAMPLE
 **** /tmp/ediff25330DRd	2016-01-18 16:26:52.536000000 -0500
 --- /tmp/ediff25330Qbj	2016-01-18 16:26:52.540000000 -0500
